@@ -47,10 +47,8 @@
         xhr.open("get", endpoint, true);
         xhr.setRequestHeader('Content-Type', 'text/plain');
 
-        // send the collected data as JSON
         var result = xhr.send();
         console.log(result);
-        // send the collected data as JSON
 
         xhr.onloadend = function () {
           toggleLeadForm();
@@ -68,12 +66,14 @@
         document.getElementById("leadEmail").style.display = "none";
         document.getElementById("leadPhone").style.display = "none";
         document.getElementById("leadMessage").style.display = "none";
+        document.getElementById("submitButton").style.display = "none";
       } else {
         leadthankYou.style.display = "none";
         document.getElementById("leadName").style.display = "block";
         document.getElementById("leadEmail").style.display = "block";
         document.getElementById("leadPhone").style.display = "block";
         document.getElementById("leadMessage").style.display = "block";
+        document.getElementById("submitButton").style.display = "block";
       }
     }
 
@@ -494,7 +494,7 @@
             <input type="text" name="phone" id="leadPhone" placeholder="PHONE NUMBER">
             <textarea name="message" id="leadMessage" placeholder="YOUR MESSAGE"></textarea>
             <div class="pb30">
-              <button class="btn btn-primary" onclick="submitLead();" >SEND MESSAGE</button>
+              <button class="btn btn-primary" onclick="submitLead();" id="submitButton" >SEND MESSAGE</button>
             </div>
             <div class="pb30" id="leadthankYou" style="display:none;">
               <button class="btn btn-primary" onclick="toggleLeadForm();" >THANKS FOR THE MESSAGE!</button>
