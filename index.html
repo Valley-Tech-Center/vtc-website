@@ -28,31 +28,37 @@
     }  
     function submitLead(){
       var l = new lead();
-      l.name = document.getElementById("leadName");
-      l.email = document.getElementById("leadEmail");
-      l.phone = document.getElementById("leadPhone");
-      l.message = document.getElementById("leadMessage");
+      l.name = document.getElementById("leadName").value;
+      l.email = document.getElementById("leadEmail").value;
+      l.phone = document.getElementById("leadPhone").value;
+      l.message = document.getElementById("leadMessage").value;
       l.source = 'Valley Tech Center';
+      if ( null != l.name && ( null != l.email || null != l.phone ) ){
+        var endpoint = "https://mkpartners.secure.force.com/services/apexrest/api"
+        endpoint += "?operation=insert";
+        endpoint += "&sobject=lead";
+        endpoint += "&name="+l.name;
+        endpoint += "&email="+l.email;
+        endpoint += "&phone="+l.phone;
+        endpoint += "&description="+l.message;
+        endpoint += "&source="+l.source;
 
-      var xhr = new XMLHttpRequest();
-      xhr.open("get", "https://mkpartners.secure.force.com/services/apexrest/api", true);
-      xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
-      xhr.setRequestHeader('Origin', 'http://www.valleytechcenter.com/');
+        var xhr = new XMLHttpRequest();
+        xhr.open("get", endpoint, true);
+        xhr.setRequestHeader('Content-Type', 'text/plain');
 
-      // send the collected data as JSON
-      var result = xhr.send(JSON.stringify(l));
-      console.log(result);
+        // send the collected data as JSON
+        var result = xhr.send();
+        console.log(result);
+        // send the collected data as JSON
 
-      xhr.onloadend = function () {
-        // done
-      };
-//      xhttp.open("POST", "https://mkpartners.secure.force.com/services/apexrest/api", true);
-//      xhttp.setRequestHeader("Content-type", "application/json");
-//      xhttp.send("l");
-//      xhttp.send();
-
-
-      toggleLeadForm();
+        xhr.onloadend = function () {
+          toggleLeadForm();
+          // done
+        };
+      } else {
+        //show Errors
+      }
     }
     function toggleLeadForm(){
       var leadForm = document.getElementById("leadForm");
@@ -482,7 +488,7 @@
               <input type="text" name="fullname" id="leadName" placeholder="NAME &amp; SURNAME">
               <input type="email" name="email" id="leadEmail" placeholder="E-MAIL ADDRESS">
               <input type="text" name="phone" id="leadPhone" placeholder="PHONE NUMBER">
-              <textarea name="message" i="leadMessage" placeholder="YOUR MESSAGE"></textarea>
+              <textarea name="message" id="leadMessage" placeholder="YOUR MESSAGE"></textarea>
               <div class="pb30">
                 <button class="btn btn-primary" onclick="submitLead();" >SEND MESSAGE</button>
               </div>
