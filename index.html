@@ -484,15 +484,13 @@
 
       <div class="container">
         <div class="demo-contact-form">
-            <form id="leadForm" method="post" target="hiddenFrame" >
-              <input type="text" name="fullname" id="leadName" placeholder="NAME &amp; SURNAME">
-              <input type="email" name="email" id="leadEmail" placeholder="E-MAIL ADDRESS">
-              <input type="text" name="phone" id="leadPhone" placeholder="PHONE NUMBER">
-              <textarea name="message" id="leadMessage" placeholder="YOUR MESSAGE"></textarea>
-              <div class="pb30">
-                <button class="btn btn-primary" onclick="submitLead();" >SEND MESSAGE</button>
-              </div>
-            </form>
+            <input type="text" name="fullname" id="leadName" placeholder="NAME &amp; SURNAME">
+            <input type="email" name="email" id="leadEmail" placeholder="E-MAIL ADDRESS">
+            <input type="text" name="phone" id="leadPhone" placeholder="PHONE NUMBER">
+            <textarea name="message" id="leadMessage" placeholder="YOUR MESSAGE"></textarea>
+            <div class="pb30">
+              <button class="btn btn-primary" onclick="submitLead();" >SEND MESSAGE</button>
+            </div>
             <div class="pb30" id="leadthankYou" style="display:none;">
               <button class="btn btn-primary" onclick="toggleLeadForm();" >THANKS FOR THE MESSAGE!</button>
             </div>
