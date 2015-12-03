@@ -15,9 +15,58 @@
   <!-- MasterSlider default skin -->
   <link rel="stylesheet" href="masterslider/skins/default/style.css" />
 
-    <link rel="stylesheet" href="css/swipebox.min.css">
+  <link rel="stylesheet" href="css/swipebox.min.css">
 
   <link rel="stylesheet" href="css/style.css">
+  <script>
+    function lead(){
+      this.name = null;
+      this.email = null;
+      this.phone = null;
+      this.message = null;
+      this.source = null;
+    }  
+    function submitLead(){
+      var l = new lead();
+      l.name = document.getElementById("leadName");
+      l.email = document.getElementById("leadEmail");
+      l.phone = document.getElementById("leadPhone");
+      l.message = document.getElementById("leadMessage");
+      l.source = 'Valley Tech Center';
+
+      var xhr = new XMLHttpRequest();
+      xhr.open("get", "https://mkpartners.secure.force.com/services/apexrest/api", true);
+      xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+      xhr.setRequestHeader('Origin', 'http://www.valleytechcenter.com/');
+
+      // send the collected data as JSON
+      var result = xhr.send(JSON.stringify(l));
+      console.log(result);
+
+      xhr.onloadend = function () {
+        // done
+      };
+//      xhttp.open("POST", "https://mkpartners.secure.force.com/services/apexrest/api", true);
+//      xhttp.setRequestHeader("Content-type", "application/json");
+//      xhttp.send("l");
+//      xhttp.send();
+
+
+      toggleLeadForm();
+    }
+    function toggleLeadForm(){
+      var leadForm = document.getElementById("leadForm");
+      var leadthankYou = document.getElementById("leadthankYou");
+      if ( leadthankYou.style.display == "none" ){
+        leadthankYou.style.display = "block";
+        leadForm.style.display = "none";
+      } else {
+        leadthankYou.style.display = "none";
+        leadForm.style.display = "block";
+      }
+    }
+
+  </script>
 </head>
 
 <body>
@@ -429,12 +478,17 @@
 
       <div class="container">
         <div class="demo-contact-form">
-            <input type="text" placeholder="NAME &amp; SURNAME">
-            <input type="email" placeholder="E-MAIL ADDRESS">
-            <input type="text" placeholder="PHONE NUMBER">
-            <textarea name="name" placeholder="YOUR MESSAGE"></textarea>
-            <div class="pb30">
-              <button class="btn btn-primary">SEND MESSAGE</button>
+            <form id="leadForm" method="post" target="hiddenFrame" >
+              <input type="text" name="fullname" id="leadName" placeholder="NAME &amp; SURNAME">
+              <input type="email" name="email" id="leadEmail" placeholder="E-MAIL ADDRESS">
+              <input type="text" name="phone" id="leadPhone" placeholder="PHONE NUMBER">
+              <textarea name="message" i="leadMessage" placeholder="YOUR MESSAGE"></textarea>
+              <div class="pb30">
+                <button class="btn btn-primary" onclick="submitLead();" >SEND MESSAGE</button>
+              </div>
+            </form>
+            <div class="pb30" id="leadthankYou" style="display:none;">
+              <button class="btn btn-primary" onclick="toggleLeadForm();" >THANKS FOR THE MESSAGE!</button>
             </div>
         </div>
       </div>
@@ -554,6 +608,7 @@
     $(this).parent().next(".content-hidden").toggleClass('active');
   });
 </script>
+  <iframe name="hiddenFrame" width="0" height="0" border="0" style="display: none;"></iframe>
 
 </body>
 </html>
