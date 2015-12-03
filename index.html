@@ -61,14 +61,19 @@
       }
     }
     function toggleLeadForm(){
-      var leadForm = document.getElementById("leadForm");
       var leadthankYou = document.getElementById("leadthankYou");
       if ( leadthankYou.style.display == "none" ){
         leadthankYou.style.display = "block";
-        leadForm.style.display = "none";
+        document.getElementById("leadName").style.display = "none";
+        document.getElementById("leadEmail").style.display = "none";
+        document.getElementById("leadPhone").style.display = "none";
+        document.getElementById("leadMessage").style.display = "none";
       } else {
         leadthankYou.style.display = "none";
-        leadForm.style.display = "block";
+        document.getElementById("leadName").style.display = "block";
+        document.getElementById("leadEmail").style.display = "block";
+        document.getElementById("leadPhone").style.display = "block";
+        document.getElementById("leadMessage").style.display = "block";
       }
     }
 
@@ -612,7 +617,6 @@
     $(this).parent().next(".content-hidden").toggleClass('active');
   });
 </script>
-  <iframe name="hiddenFrame" width="0" height="0" border="0" style="display: none;"></iframe>
 
 </body>
 </html>
