@@ -1,1 +1,619 @@
-Hello World
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>Valley Tech Center</title>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400italic,300,400,600,700%7CDroid+Serif:300,400,700,400italic%7CMontserrat:400,700%7CNothing+You+Could+Do%7CLibre+Baskerville:400,400italic">
+
+  <link rel="stylesheet" href="masterslider/style/masterslider.css" />
+
+  <!-- MasterSlider default skin -->
+  <link rel="stylesheet" href="masterslider/skins/default/style.css" />
+
+  <link rel="stylesheet" href="css/swipebox.min.css">
+
+  <link rel="stylesheet" href="css/style.css">
+  <script>
+    function lead(){
+      this.name = null;
+      this.email = null;
+      this.phone = null;
+      this.message = null;
+      this.source = null;
+    }
+    function submitLead(){
+      var l = new lead();
+      l.name = document.getElementById("leadName").value;
+      l.email = document.getElementById("leadEmail").value;
+      l.phone = document.getElementById("leadPhone").value;
+      l.message = document.getElementById("leadMessage").value;
+      l.source = 'Valley Tech Center';
+      if ( null != l.name && ( null != l.email || null != l.phone ) ){
+        var endpoint = "https://mkpartners.secure.force.com/services/apexrest/api"
+        endpoint += "?operation=insert";
+        endpoint += "&sobject=lead";
+        endpoint += "&name="+l.name;
+        endpoint += "&email="+l.email;
+        endpoint += "&phone="+l.phone;
+        endpoint += "&description="+l.message;
+        endpoint += "&leadsource="+l.source;
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("get", endpoint, true);
+        xhr.setRequestHeader('Content-Type', 'text/plain');
+
+        var result = xhr.send();
+        console.log(result);
+
+        xhr.onloadend = function () {
+          toggleLeadForm();
+          // done
+        };
+      } else {
+        //show Errors
+      }
+    }
+    function toggleLeadForm(){
+      var leadthankYou = document.getElementById("leadthankYou");
+      if ( leadthankYou.style.display == "none" ){
+        leadthankYou.style.display = "block";
+        document.getElementById("leadName").style.display = "none";
+        document.getElementById("leadEmail").style.display = "none";
+        document.getElementById("leadPhone").style.display = "none";
+        document.getElementById("leadMessage").style.display = "none";
+        document.getElementById("submitButton").style.display = "none";
+      } else {
+        leadthankYou.style.display = "none";
+        document.getElementById("leadName").style.display = "block";
+        document.getElementById("leadEmail").style.display = "block";
+        document.getElementById("leadPhone").style.display = "block";
+        document.getElementById("leadMessage").style.display = "block";
+        document.getElementById("submitButton").style.display = "block";
+      }
+    }
+
+  </script>
+</head>
+
+<body>
+<div id="main-wrapper">
+  <div class="toolbar">
+    <div class="uou-block-1a blog">
+      <div class="container">
+<!--
+        <div class="search">
+          <a href="#" class="toggle fa fa-search"></a>
+          <form action="#">
+            <input type="text" class="search-input" placeholder="Search ...">
+            <input type="submit" value="">
+          </form>
+        </div>
+-->
+        <ul class="social">
+          <li><a href="#" class="fa fa-facebook"></a></li>
+          <li><a href="#" class="fa fa-twitter"></a></li>
+          <li><a href="#" class="fa fa-google-plus"></a></li>
+        </ul>
+<!--
+        <ul class="authentication">
+          <li><a href="#">Login</a></li>
+          <li><a href="#">Register</a></li>
+        </ul>
+
+        <div class="language">
+          <a href="#" class="toggle"><img src="../img/flags/32/NL.png" alt=""> NDL</a>
+
+          <ul>
+            <li><a href="#"><img src="../img/flags/32/PT.png" alt=""> PT</a></li>
+            <li><a href="#"><img src="../img/flags/32/FR.png" alt=""> FR</a></li>
+            <li><a href="#"><img src="../img/flags/32/ES.png" alt=""> ES</a></li>
+          </ul>
+        </div>
+-->
+      </div>
+    </div> <!-- end .uou-block-1a -->
+  </div> <!-- end toolbar -->
+
+  <div class="header-nav">
+      <div class="box-shadow-for-ui">
+
+        <div class="uou-block-2b icons">
+          <div class="container">
+            <a href="#" class="logo"><img src="../img/logo.png" alt=""></a>
+            <a href="#" class="mobile-sidebar-button mobile-sidebar-toggle"><span></span></a>
+
+            <nav class="nav">
+              <ul class="sf-menu">
+                <li class="active"><a href="../index.html"><i class="fa fa-home"></i> Home</a></li>
+<!--
+                <li>
+                  <a href="#"><i class="fa fa-suitcase"></i> Services</a>
+                  <ul>
+                    <li><a href="../footer.html">Virtual Office</a></li>
+                    <li><a href="../breadcrumbs.html">Assigned Desk</a></li>
+                    <li><a href="../toolbar.html">Private Office</a></li>
+                    <li><a href="../header.html">Meeting Room</a></li>
+                  </ul>
+                </li>
+-->
+                <li><a href="#contactus"><i class="fa fa-eye"></i> Contact Us</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div> <!-- end .uou-block-2b -->
+
+      </div>
+  </div> <!-- edn header-navm -->
+
+  <div class="sb-slider-section default">
+    <!-- masterslider -->
+    <div class="master-slider ms-skin-default  app-master-slider-secondary" id="masterslider">
+        <!-- new slide -->
+        <div class="ms-slide">
+          <!-- slide background -->
+          <img src="masterslider/blank.gif" data-src="../img/meetingroom.jpg" alt="Meeting Room"/>
+            <div class="ms-layer ms-caption" data-origin="ml" >
+              <div class="container">
+                <h1 class="very-large-heading">
+                  <strong>Professional</strong>
+                  <strong>Meeting</strong>
+                  <strong>Room</strong>
+                </h1>
+                <p class="text-uppercase italic-text-large">Meet with your clients or employees in a professional and modern environment.</p>
+                <a class="btn btn-transparent mr10" href="#contactus">Contact Us</a>
+              </div>
+            </div>
+        </div>
+        <!-- end of slide -->
+        <!-- new slide -->
+        <div class="ms-slide">
+          <!-- slide background -->
+          <img src="masterslider/blank.gif" data-src="../img/dedicateddesk.jpg" alt="Dedicated Desk"/>
+            <div class="ms-layer ms-caption" data-origin="ml" >
+              <div class="container">
+                <h1 class="very-large-heading">
+                  <strong>Dedicated</strong>
+                  <strong>Work</strong>
+                  <strong>Place</strong>
+                </h1>
+                <p class="text-uppercase italic-text-large">Have you own assigned desk in a work conducive environment</p>
+                <a class="btn btn-transparent mr10" href="#contactus">Contact Us</a>
+              </div>
+            </div>
+        </div>
+        <!-- end of slide -->
+
+        <!-- new slide -->
+        <div class="ms-slide">
+          <!-- slide background -->
+          <img src="masterslider/blank.gif" data-src="../img/privateoffice.jpg" alt="Private Office"/>
+
+            <div class="ms-layer ms-caption" data-origin="ml" >
+              <div class="container">
+                <h1 class="very-large-heading">
+                  <strong>Professional</strong>
+                  <strong>Private</strong>
+                  <strong>Office</strong>
+                </h1>
+                <p class="text-uppercase italic-text-large">Establish a physical presence for your growing business.</p>
+                <a class="btn btn-transparent mr10" href="#contactus">Contact Us</a>
+              </div>
+            </div>
+        </div>
+        <!-- end of slide -->
+    </div>
+    <!-- end of masterslider -->
+  </div> <!-- end sb-slider-secton -->
+
+  <div class="uou-cta secondary">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-7">
+          <p>Come visit us today! </p>
+        </div>
+        <div class="col-sm-5 text-right">
+          <!--<a class="btn btn-transparent" href="#">Read More</a>-->
+          <a class="btn btn-primary" href="#contactus">Contact Us</a>
+        </div>
+
+      </div> <!-- end row -->
+    </div>
+
+  </div>  <!-- end uou-cta  -->
+
+  <div class="uou-demo-block">
+    <h1 class="block-title" id="services" >Welcome!</h1>
+    <p class="block-secondary-title">
+      Modern and professional space for your growing business.
+    </p>
+  </div> <!--   end uou-demo-block -->
+
+  <div class="uou-demo-block">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-5">
+          <div class="uou-toggle-content">
+            <div class="content-main">
+
+              <h6><a class="toggle-btn active" href="#"></a>
+              Virtual Office</h6>
+              <div class="content-hidden active">
+                <ul>
+                  <li>Mail & packages received and signed for</li>
+                  <li>Receptionist to greet clients and visitors</li>
+                  <li>A dedicated local business telephone number and company voicemail</li>
+                  <li>Virtual Receptionist to answer calls using your company name</li>
+                  <li>24 hour access to voicemail</li>
+                  <li>Local fax number</li>
+                  <li>Voicemail delivered via email</li>
+                  <li>Private audio & web conferencing account</li>
+                  <li>Complimentary self-service tea and coffee</li>
+                  <li>5 days of Hot Desk + Internet</li>
+                </ul>
+                $250/month
+              </div>
+            </div>
+
+            <div class="content-main">
+              <h6><a class="toggle-btn" href="#"></a>
+              Assigned Desk</h6>
+              <div class="content-hidden">
+                <ul>
+                  <li>Mail & packages received and signed for</li>
+                  <li>Receptionist to greet clients and visitors</li>
+                  <li>A dedicated local business telephone number and company voicemail</li>
+                  <li>Virtual Receptionist to answer calls using your company name</li>
+                  <li>24 hour access to voicemail</li>
+                  <li>Local fax number</li>
+                  <li>Voicemail delivered via email</li>
+                  <li>Private audio & web conferencing account</li>
+                  <li>Complimentary self-service tea and coffee</li>
+                  <li>Dedicated desk with Phone and Internet</li>
+                </ul>
+                $350/month
+              </div>
+            </div>
+
+            <div class="content-main">
+              <h6><a class="toggle-btn" href="#"></a>
+              Private Office</h6>
+              <div class="content-hidden">
+                <ul>
+                  <li>Mail & packages received and signed for</li>
+                  <li>Receptionist to greet clients and visitors</li>
+                  <li>A dedicated local business telephone number and company voicemail</li>
+                  <li>Virtual Receptionist to answer calls using your company name</li>
+                  <li>24 hour access to voicemail</li>
+                  <li>Local fax number</li>
+                  <li>Voicemail delivered via email</li>
+                  <li>Private audio & web conferencing account</li>
+                  <li>Complimentary self-service tea and coffee</li>
+                  <li>Dedicated desk with Phone and Internet</li>
+                </ul>
+                Rent starting at $500/month, call to get a free quote
+              </div>
+            </div>
+
+            <div class="content-main">
+              <h6><a class="toggle-btn" href="#"></a>
+              Meeting Room</h6>
+              <div class="content-hidden">
+                <ul>
+                  <li>Multiple room configurations</li>
+                  <li>Seat up to 25 people</li>
+                  <li>Mail & packages received and signed for (during week of reservation)</li>
+                  <li>Receptionist to greet clients and visitors</li>
+                  <li>Conference Phone with unlimited long distance</li>
+                  <li>Local fax number</li>
+                  <li>Private audio & web conferencing account</li>
+                  <li>Complimentary self-service tea and coffee</li>
+                  <li>Lecturn</li>
+                  <li>White board</li>
+                  <li>Projector and Screen available</li>
+                </ul>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div> <!-- endcontainer -->
+  </div>  <!--  end uou-demo-block -->
+<!--
+  <div class="uou-block-5a uou-twitter-content has-bg-image" data-bg-image="../img/banner.jpg" data-bg-color="000" data-bg-opacity=".20">
+    <div class="container">
+      <blockquote>
+        <div class="flexslider default-slider">
+          <ul class="slides">
+            <li class="">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. <a href="#">bit.ly/link</a>
+
+              <div class="twitt-details">
+                <p>
+                  <span>2 week ago</span>
+                  <a href="#">Reply</a>
+                  <a href="#">Retweet</a>
+                  <a href="#">Favorite</a>
+                </p>
+              </div>
+            </li>
+
+            <li class="">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. <a href="#">bit.ly/link</a>
+
+              <div class="twitt-details">
+                <p>
+                  <span>4 week ago</span>
+                  <a href="#">Reply</a>
+                  <a href="#">Retweet</a>
+                  <a href="#">Favorite</a>
+                </p>
+              </div>
+            </li>
+
+            <li class="">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. <a href="#">bit.ly/link</a>
+
+              <div class="twitt-details">
+                <p>
+                  <span>3 week ago</span>
+                  <a href="#">Reply</a>
+                  <a href="#">Retweet</a>
+                  <a href="#">Favorite</a>
+                </p>
+              </div>
+            </li>
+
+          </ul>
+        </div>
+      </blockquote>
+    </div>
+  </div>--> <!-- end .uou-block-5a -->
+
+
+<!--
+  <div class="uou-demo-block has-bg-image" data-bg-image="../img/demo-bg.png">
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 col-md-push-4 text-center">
+          <img src="../img/mobile-img.png" class="mobile-pic" alt="">
+        </div>
+        <div class="col-md-4 col-md-pull-4 text-right">
+          <ul class="list-icon-large inverse">
+            <li>
+              <i class="fa fa-paint-brush"></i>
+              <h6>Technology</h6>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
+            </li>
+
+            <li>
+              <i class="fa fa-paper-plane-o"></i>
+              <h6>Social Networks</h6>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
+            </li>
+
+            <li>
+              <i class="fa fa-pencil"></i>
+              <h6>Design</h6>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <ul class="list-icon-large left">
+            <li>
+              <i class="fa fa-mobile"></i>
+              <h6>Technology</h6>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
+            </li>
+
+            <li class="active">
+              <i class="fa fa-paper-plane-o"></i>
+              <h6>Social Networks</h6>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
+            </li>
+
+            <li>
+              <i class="fa fa-globe"></i>
+              <h6>Design</h6>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+  </div>-->  <!--  end uou-demo-block -->
+
+  <div class="uou-demo-block zero-pb">
+    <h1 class="block-title">Work Space</h1>
+    <p class="block-secondary-title">
+      Check out our space
+    </p>
+    <div class="uou-portfolio full-width">
+      <section id="portfolio" class="portfolio">
+        <div class="">
+          <div class="clearfix"></div>
+          <div class="portfolio-filters-content">
+            <article class="development design">
+              <a href="img/meetingroom.jpg" class="swipebox">
+                <img src="../img/meetingroom.jpg" alt="" class="work img-responsive">
+                <span class="overlay">
+                  <i class="fa fa-plus"></i>
+                  <b class="title"><strong>Photo Session</strong>Training Room</b>
+                </span>
+              </a>
+            </article>
+            <article class="design">
+              <a href="img/privateoffice.jpg" class="swipebox">
+                <img src="../img/privateoffice.jpg" alt="" class="work img-responsive">
+                <span class="overlay">
+                  <i class="fa fa-plus"></i>
+                  <b class="title"><strong>Photo Session</strong>Private Office</b>
+                </span>
+              </a>
+            </article>
+            <article class="development branding">
+              <a href="img/dedicateddesk.jpg" class="swipebox">
+                <img src="../img/dedicateddesk.jpg" alt="" class="work img-responsive">
+                <span class="overlay">
+                  <i class="fa fa-plus"></i>
+                  <b class="title"><strong>Photo Session</strong>Assigned Desk</b>
+                </span>
+              </a>
+            </article>
+          </div>
+        </div>
+      </section>
+    </div> <!-- end uou-portfolio -->
+
+
+  </div>  <!--  end uou-demo-block -->
+
+
+  <div class="uou-demo-block has-bg-image" data-bg-image="../img/contact-bg.jpg" data-bg-color="000" data-bg-opacity=".20">
+
+    <h1 class="block-title" id="contactus" >Contact</h1>
+    <p class="block-secondary-title invert">
+      Get in touch with us   </p>
+
+      <div class="container">
+        <div class="demo-contact-form">
+            <input type="text" name="fullname" id="leadName" placeholder="NAME &amp; SURNAME">
+            <input type="email" name="email" id="leadEmail" placeholder="E-MAIL ADDRESS">
+            <input type="text" name="phone" id="leadPhone" placeholder="PHONE NUMBER">
+            <textarea name="message" id="leadMessage" placeholder="YOUR MESSAGE"></textarea>
+            <div class="pb30">
+              <button class="btn btn-primary" onclick="submitLead();" id="submitButton" >SEND MESSAGE</button>
+            </div>
+            <div class="pb30" id="leadthankYou" style="display:none;">
+              <button class="btn btn-primary" onclick="toggleLeadForm();" >THANKS FOR THE MESSAGE!</button>
+            </div>
+        </div>
+      </div>
+  </div>  <!--  end uou-demo-block -->
+
+  <div class="uou-map-section">
+    <div class="uou-block-12a">
+      <div class="map-container">
+        <div class="map" data-height="300" data-center-lat="34.1743702" data-center-lng="-118.3637623"></div>
+      </div>
+    </div> <!-- end .uou-block-12a -->
+  </div>
+
+  <div class="uou-block-4c">
+    <div class="container">
+      <ul class="links">
+        <li><a href="#">Home</a></li>
+<!--        <li><a href="#">Services</a></li>
+        <li><a href="#">Amenities</a></li>
+-->        <li><a href="#contactus">Contact Us</a></li>
+      </ul>
+
+      <hr>
+
+      <ul class="contact-info">
+        <li>
+          <i class="fa fa-map-marker"></i>
+          <address>5711 Cahuenga Blvd, North Hollywood, CA 91601</address>
+        </li>
+
+        <li>
+          <i class="fa fa-phone"></i>
+          <a href="tel:#">(818) 284-6330</a>
+        </li>
+
+        <li>
+          <i class="fa fa-envelope"></i>
+          <a href="mailto:#">info@valleytechcenter.com</a>
+        </li>
+      </ul>
+    </div>
+  </div> <!-- end .uou-block-4c -->
+
+
+  <div class="uou-block-4b secondary">
+    <div class="container">
+      <p>Copyright &copy; 2016 <a href="#">Valley Tech Center</a>. All Rights reserved.</p>
+
+      <!--<p class="secondary">Made with <i class="fa fa-heart"></i> by <a href="#">UOU Apps</a>.</p>-->
+
+      <ul class="social-icons">
+        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+        <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+        <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+      </ul>
+    </div>
+  </div> <!-- end .uou-block-4b -->
+</div> <!-- end #main-wrapper -->
+
+<div class="uou-block-11a">
+  <h5 class="title">Menu</h5>
+  <a href="#" class="mobile-sidebar-close">&times;</a>
+  <nav class="main-nav">
+      <ul>
+        <li class="active"><a href="#">Home</a></li>
+
+          <li class="pl10 active"><a href="demo-creative-agency/index.html">Home 1 - Creative Agency</a></li>
+          <li class="pl10"><a href="demo-corporate/index.html">Home 2 - Corporate</a></li>
+          <li class="pl10"><a href="demo-copywriter">Home 2 - Copywriter</a></li>
+
+        <li class="active"><a href="#">Components</a></li>
+          <li class="pl10"><a href="toolbar.html">Toolbars</a></li>
+          <li class="pl10"><a href="header.html">Headers</a></li>
+          <li class="pl10"><a href="footer.html">Footers</a></li>
+          <li class="pl10"><a href="breadcrumbs.html">Breadcrumbs</a></li>
+
+        <li class="active"><a href="slider.html">Sliders</a></li>
+        <li class="active"><a href="#">Blog</a></li>
+          <li class="pl10 active"><a href="blog-list.html">Blog list with sidebar</a></li>
+          <li class="pl10"><a href="blog-grid.html">Blog Grid with sidebar</a></li>
+          <li class="pl10"><a href="blog-list-no-sidebar.html">Blog list no sidebar</a></li>
+          <li class="pl10"><a href="blog-grid-no-sidebar.html">Blog Grid no sidebar</a></li>
+          <li class="pl10"><a href="blog-post.html">Blog Post</a></li>
+
+        <li class="active"><a href="portfolio-full-width.html">Portfolio</a></li>
+        <li class="active"><a href="gui-kit.html">Gui Kit</a></li>
+
+
+
+      </ul>
+  </nav>
+
+  <hr>
+
+</div>
+
+<!-- Scripts -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/jquery-2.1.3.min.js"><\/script>')</script>
+<!-- <script src="js/plugins/hoverIntent.js"></script> -->
+<script src="js/plugins/superfish.min.js"></script>
+<script src="js/plugins/jquery.flexslider-min.js"></script>
+<script src="masterslider/masterslider.min.js"></script>
+<script src="js/master-slider-custom.js"></script>
+<script src="//maps.googleapis.com/maps/api/js?v=3.exp"></script>
+<script src="js/isotope.pkgd.min.js"></script>
+<script src="js/jquery.swipebox.min.js"></script>
+<script src="js/isotope-custom.js"></script>
+<script src="js/scripts.min.js"></script>
+
+<script type="text/javascript">
+  $('.content-main h6 a').on('click', function(e){
+    e.preventDefault();
+    $(this).toggleClass('active');
+    $(this).parent().next(".content-hidden").toggleClass('active');
+  });
+</script>
+
+</body>
+</html>
